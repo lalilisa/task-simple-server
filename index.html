@@ -1,0 +1,45 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<h1>Trí Mai</h1>
+<!--<form action="http://localhost:8080/test" method="post" accept-charset="utf-8" >-->
+<div>
+    <input type="text" name="name" id="name">
+</div>
+<div>
+    <button  id="submit">Send</button>
+</div>
+<div id="name-div" style="text-align: center; font-size: 30px" >
+
+</div>
+<div id="time-server" style="text-align: center;font-size: 30px">
+
+</div>
+<!--</form>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+   $("#submit").click(()=>{
+       console.log("Tris Mai");
+       const dataPost={"name":$("#name").val()};
+       $.ajax({
+           type:"POST",
+           url:"http://localhost:8080/test",
+           data:JSON.stringify(dataPost),
+           contentType:"application/json",
+           dataType:"json",
+           success:(response)=>{
+                console.log(response);
+               $("#name-div").html("Chào mừng "+response.name);
+               $("#time-server").html("Thời gian hiện tại của server : "+response.currentTime);
+           }
+       })
+   })
+</script>
+</body>
+</html>
