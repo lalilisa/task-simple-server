@@ -56,16 +56,12 @@ public class SimpleHttpServer {
                 StringBuilder stringBuilder=new StringBuilder();
 
                 while ((line=in.readLine())!=null){
-                    System.out.println(line);
-                    stringBuilder.append(line);
+                    stringBuilder.append(line.trim());
                 }
-
                 String params=stringBuilder.toString();
-                Map<String,String> map= JsonObject.parser(params);
-
+                Map<String,String> map= JsonObject.parser(params);;
                 String name=map.get("name");
                 String response=new Response(name,new Date()).toString();
-
                 byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
 
                 Headers headerResponse = httpExchange.getResponseHeaders();
